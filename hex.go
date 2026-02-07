@@ -1,23 +1,28 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
 
 func convertHex(text string) string {
 
-	words := strings.Split(text, " ") //["Simply", "add", "1E", "(hex)"]
+	words := strings.Split(text, " ")
 
 	for i, value := range words {
-		if value == "(hex)" && i > 0 {
+		if value == "(hex)" && i > 0{
+			words[i] = ""
 
-			back := words[i-1]
+			back := words[i-1] 
 
-			decimal, _ := strconv.ParseInt(back, 16, 64)
+			decimal, err := strconv.ParseInt(back, 16, 64)
+
+			if err != nil {
+				fmt.Println("Error Hex decimal:", err)
+			}
 
 			words[i-1] = strconv.Itoa(int(decimal))
-			words[i] = ""
 		}
 	}
 	return strings.Join(words, " ")
