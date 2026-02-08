@@ -18,7 +18,6 @@ func main() {
 	outputfile := args[1]
 
 	data, err := os.ReadFile(inputfile)
-
 	if err != nil {
 		fmt.Println("Error Reading:", err)
 		return
@@ -27,6 +26,8 @@ func main() {
 	text := string(data)
 
 	text = convertHex(text)
+	text = convertBin(text)
+	text = handleCase(text)
 
 	err = os.WriteFile(outputfile, []byte(text), 0644)
 

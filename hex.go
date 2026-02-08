@@ -17,7 +17,6 @@ func convertHex(text string) string {
 			back := words[i-1] 
 
 			decimal, err := strconv.ParseInt(back, 16, 64)
-
 			if err != nil {
 				fmt.Println("Error Hex decimal:", err)
 			}
